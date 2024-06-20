@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis Result</title>
+</head>
+<body>
+    <h2>Result</h2>
+    {% if sentiment_score > 0  %}
+    <p>Good</p>
+    {% else %}
+    <p>Bad</p>
+    {% endif %}
+    <p><strong>Rating:</strong> {{ rating }}</p>
+    <p><strong>Text:</strong> {{ text }}</p>
+    <p><strong>Sentiment Score:</strong> {{ sentiment_score }}</p>
+</body>
+</html>

@@ -1,0 +1,136 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Aroma Shop - Login</title>
+    <link rel="icon" href="{% static 'img/Fevicon.png' %}" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/bootstrap/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/fontawesome/css/all.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/themify-icons/themify-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendors2/linericon/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.theme.default.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nice-select/nice-select.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nouislider/nouislider.min.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'css2/style.css' %}" />
+  </head>
+  <body>
+    <!--================ Start Header Menu Area =================-->
+   
+    <!--================ End Header Menu Area =================-->
+
+    <!-- ================ start banner area ================= -->
+  
+    <!-- ================ end banner area ================= -->
+
+    <!--================Login Box Area =================-->
+    <section class="login_box_area ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="login_box_img">
+              <div class="hover">
+                <h4>Shop our website?</h4>
+                <p>
+                    Online Shopping India - Buy mobiles, laptops, cameras, books, watches, apparel, shoes and e-Gift Cards
+                </p>
+                <a class="button button-account" href="/signup"
+                  >Create an Account</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="login_form_inner">
+              <h3>Log in to enter</h3>
+              <form class="row login_form" method="post" action="/login/" id="contactForm">
+                {% csrf_token %}
+                <div class="col-md-12 form-group">
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="username"
+                    placeholder="Username"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Username'"
+                  />
+                </div>
+                <div class="col-md-12 form-group">
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="password"
+                    placeholder="Password"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Password'"
+                  />
+                </div>
+                <div class="col-md-12 form-group">
+                  <div class="creat_account">
+                    <input type="checkbox" id="f-option2" name="selector" />
+                    <label for="f-option2">Keep me logged in</label>
+                  </div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <button
+                    type="submit"
+                    value="submit"
+                    class="button button-login w-100"
+                  >
+                    Log In
+                  </button>
+                  <a href="#">Forgot Password?</a>
+                </div>
+              </form>
+              {% if error  %}
+              <p class="text-danger w-100">{{error}}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Login Box Area =================-->
+
+    <!--================ Start footer Area  =================-->
+    
+    <!--================ End footer Area  =================-->
+
+    <script src="{% static 'vendors2/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors2/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors2/skrollr.min.js' %}"></script>
+    <script src="{% static 'vendors2/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors2/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors2/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors2/mail-script.js' %}"></script>
+    <script src="{% static 'js2/main.js' %}"></script>
+  </body>
+</html>

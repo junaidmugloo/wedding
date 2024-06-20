@@ -1,0 +1,228 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Checkout</title>
+    <link rel="icon" href="{% static 'img/Fevicon.png' %}" type="image/png" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/bootstrap/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/fontawesome/css/all.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/themify-icons/themify-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendors2/linericon/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.theme.default.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nice-select/nice-select.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nouislider/nouislider.min.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'css2/style.css' %}" />
+
+    <script src="{% static 'js2/city.js' %}"></script>
+  </head>
+  <body>
+    <!--================ Start Header Menu Area =================-->
+   {% include "partials/topnav2.html" %}
+    <!--================ End Header Menu Area =================-->
+
+ 
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area mt-4 p-0">
+     
+      <div class="container">
+        
+       
+        <div class="billing_details">
+         
+         
+            <form
+            class="row contact_form"
+            action="/place_order/"
+            method="post">
+            <div class="col-lg-8">
+              <h3>Shipping Details</h3>
+             
+                {% csrf_token %}
+                <div class="col-md-12 form-group p_star">
+                  <input
+                  required
+                    type="text"
+                    class="form-control"
+                    id="first"
+                    name="name"
+                    placeholder="Shipping Address"
+                  />
+                  <span
+                    class="placeholder"
+                    data-placeholder="Shipping Address"
+                  ></span>
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <input
+                  required
+                    type="text"
+                    class="form-control"
+                    id="last"
+                    name="contact"
+                    placeholder="Contact Number"
+                  />
+                  <input
+                  required
+                    type="hidden"
+                    class="form-control"
+                     value={{user.id}}
+                    name="user_id"
+                   
+                  />
+                  <span class="placeholder" data-placeholder="Contact Number"></span>
+                </div>
+                
+               
+                
+                <div class="col-md-12 form-group p_star">
+                  <select class="country_select" name ="stt"  onchange="print_city('state', this.selectedIndex);" id="sts">
+                    
+                  </select>
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <select required id ="state" name="state" class="country_select">
+                    
+                  </select>
+                </div>
+              
+               
+              
+             
+                <div class="col-md-12 form-group">
+                  <input required
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    name="zip"
+                    placeholder="Postcode/ZIP"
+                  />
+                </div>
+                
+                <div class="col-md-12 form-group mb-0">
+                  <div class="creat_account">
+                  
+                    <input type="checkbox" required id="f-option3" name="shipp" />
+                    <label for="f-option3">Ship to this address.</label>
+                  </div>
+                  <textarea
+                    class="form-control"
+                    name="address"
+                    id="message"
+                    rows="1"
+                    placeholder="Order Notes"
+                  ></textarea>
+                </div>
+              
+            </div>
+            <div class="col-lg-4">
+              <div class="order_box">
+                <h2>Your Order</h2>
+                
+                <ul class="list">
+                  {% for item in cart  %}
+                  
+                  <li>
+                    <a href="#"
+                      >{{item.product.name}} <span class="middle mx-0"> x {{item.qty}}</span>
+                      <span class="last">₹{{item.total}}</span>
+                      </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <ul class="list list_2">
+                  <li>
+                    <a href="#">Subtotal <span>₹{{tot}}</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Shipping <span>Flat rate: ₹0</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Total <span>₹{{tot}}</span></a>
+                  </li>
+                </ul>
+
+                <input type="hidden" name="total" value={{tot}} >
+                <div class="payment_item">
+                  <div class="radion_btn">
+                    <input type="radio" value="COD" required id="f-option5" name="selector" />
+                    <label for="f-option5">Cash on Delivery</label>
+                    <div class="check"></div>
+                  </div>
+                  <p>
+                    Please check your Address, Country, Contact, Postcode , Before place order.
+                  </p>
+                </div>
+                <div class="payment_item active">
+                  <div class="radion_btn">
+                    <input type="radio" value="online" required id="f-option6" name="selector" />
+                    <label for="f-option6">Online Payment </label>
+                    <img src="{% static 'img/product/card.jpg' %}" alt="" />
+                    <div class="check"></div>
+                  </div>
+                  <p>
+                    Pay via Online; you can pay with your UPI card if you
+                    don’t have a Credit or Debit Card.
+                  </p>
+                </div>
+                <div class="creat_account">
+                  <input type="checkbox" required id="f-option4" name="terms" />
+                  <label for="f-option4">I’ve read and accept the </label>
+                  <a href="#">terms &amp; conditions*</a>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="button button-paypal" href="#">Place Order</button>
+                </div>
+              </div>
+           
+          </form>
+          </div>
+        
+        </div>
+      </div>
+    
+    </section>
+    <!--================End Checkout Area =================-->
+
+    <!--================ Start footer Area  =================-->
+   
+    <!--================ End footer Area  =================-->
+
+    <script src="{% static 'vendors2/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors2/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    {% comment %} <script src="{% static 'vendors2/skrollr.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendors2/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors2/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors2/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors2/mail-script.js' %}"></script>
+    <script src="{% static 'js2/main.js' %}"></script>
+   
+    <script language="javascript">print_state("sts");</script>
+  </body>
+</html>

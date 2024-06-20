@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    
+    <form method="post" action="/test/" id="test">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        {% comment %} $(document).ready(function () {                 
+            $('#test').submit(function (event) { 
+                event.preventDefault();                 
+                var form = document.getElementById('test'); 
+                var formData = new FormData(form); 
+               
+                $.ajax({ 
+                    url: '/test/', 
+                    method: 'POST', 
+                    data: formData, 
+                    processData: false, 
+                    contentType: false, 
+                    success: function (response) {                       
+                        console.log(response)
+                    }, 
+                    error: function (xhr, status, error) {                        
+                        
+                        console.error(error); 
+                    } 
+                }); 
+            }); 
+        });  {% endcomment %}
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Aroma Shop - Login</title>
+    <link rel="icon" href="{% static 'img/Fevicon.png' %}" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/bootstrap/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/fontawesome/css/all.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/themify-icons/themify-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendors2/linericon/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.theme.default.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nice-select/nice-select.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nouislider/nouislider.min.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'css2/style.css' %}" />
+  </head>
+  <body>
+    <!--================ Start Header Menu Area =================-->
+   
+    <!--================ End Header Menu Area =================-->
+
+    <!-- ================ start banner area ================= -->
+    
+    <!-- ================ end banner area ================= -->
+
+    <!--================Login Box Area =================-->
+    <section class="login_box_area ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="login_box_img">
+              <div class="hover">
+                <h4>Already have an account?</h4>
+                <p>
+                  Online Shopping India - Buy mobiles, laptops, cameras, books, watches, apparel, shoes and e-Gift Cards
+               
+                </p>
+                <a class="button button-account" href="/login">Login Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="login_form_inner register_form_inner">
+              <h3>Create an account</h3>
+              <form class="row login_form" method="post"  id="register_form">
+                {% csrf_token %}
+                <div class="col-md-12 form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    required 
+                    minlength="8"
+                    maxlength="20"
+                    name="first_name"
+                    placeholder="Name"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Name'"
+                  />
+                </div>
+
+                <div class="col-md-12 form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    required 
+                    minlength="8"
+                    maxlength="20"
+                    name="username"
+                    placeholder="Username"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Username'"
+                  />
+                </div>
+                <div class="col-md-12 form-group">
+                  <input
+                  required
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Email Address"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Email Address'"
+                  />
+                </div>
+                <div class="col-md-12 form-group">
+                  <input
+                    required
+                    minlength="8"
+                    maxlength="20"
+                    type="text"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Password'"
+                  />
+                </div>
+               
+                
+                <div class="col-md-12 form-group">
+                  <button
+                    type="submit"
+                    value="submit"
+                    class="button button-register w-100"
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
+              {% if error %}
+             {{error}}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Login Box Area =================-->
+
+    <!--================ Start footer Area  =================-->
+    
+    <!--================ End footer Area  =================-->
+
+    <script src="{% static 'vendors2/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors2/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors2/skrollr.min.js' %}"></script>
+    <script src="{% static 'vendors2/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors2/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors2/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors2/mail-script.js' %}"></script>
+    <script src="{% static 'js2/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+    <script>
+      $(document).ready(function () {                 
+          $('#register_form').submit(function (event) { 
+              event.preventDefault();                 
+              var form = document.getElementById('register_form'); 
+              var formData = new FormData(form); 
+             
+              $.ajax({ 
+                  url: '/signup/', 
+                  method: 'POST', 
+                  data: formData, 
+                  processData: false, 
+                  contentType: false, 
+                  success: function (response) {                       
+                      Swal.fire({
+                          title: "Done",
+                          text: "Account Created successfully.!",
+                          icon: "success"
+                        });
+                        console.log(response)
+                        window.location.href='/login/'
+                  }, 
+                  error: function (xhr, status, data) {                        
+                      Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: xhr.responseJSON.error,
+                         
+                        });
+                      console.log(xhr); 
+                  } 
+              }); 
+          }); 
+      }); 
+  </script>
+  </body>
+</html>

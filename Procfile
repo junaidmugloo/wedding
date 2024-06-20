@@ -1,0 +1,1 @@
+web: gunicorn Fake_Review.wsgi

@@ -1,0 +1,154 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My orders</title>
+    <link rel="icon" href="{% static 'img/Fevicon.png' %}" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/bootstrap/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/fontawesome/css/all.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/themify-icons/themify-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendors2/linericon/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.theme.default.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/owl-carousel/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nice-select/nice-select.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors2/nouislider/nouislider.min.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'css2/style.css' %}" />
+    <style>
+      .loading-wave {
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        background-color: rgb(255, 255, 255);
+        z-index: 3;
+      }
+      
+      .loading-bar {
+        width: 20px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #3498db;
+        border-radius: 5px;
+        animation: loading-wave-animation 1s ease-in-out infinite;
+      }
+      
+      .loading-bar:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      
+      .loading-bar:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      
+      .loading-bar:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      
+      @keyframes loading-wave-animation {
+        0% {
+          height: 10px;
+        }
+      
+        50% {
+          height: 50px;
+        }
+      
+        100% {
+          height: 10px;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <!--================ Start Header Menu Area =================-->
+   {% include "partials/topnav2.html" %}
+    <!--================ End Header Menu Area =================-->
+
+    <!-- ================ start banner area ================= -->
+    
+    <!-- ================ end banner area ================= -->
+
+    <!--================Cart Area =================-->
+    <div class="loading-wave" id="wave">
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+    </div>
+    <section class="cart_area mt-4 p-0">
+      <div class="container">
+        <div class="cart_inner row">
+            {% for item in order %}
+          <div class="card col-6">
+            <div class="card-body">
+                <p>Order Code : {{item.order_code}}</p>
+                <p>Address : {{item.delivery_address}}</p>
+                <p>State : {{item.country}}</p>
+                <p>City : {{item.state}}</p>
+                <p>ZIP : {{item.pincode}}</p>
+                <p>Contact : {{item.contact_number}}</p>
+                <p>Order Total : ₹{{item.order_total}}</p>
+                <p>Order Status : <b class="badge badge-success">{{item.status}}</b></p>
+                <a class="btn btn-primary" href="/myorders/{{item.order_code}}">View Details</a>
+            </div>
+          </div>
+           {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!--================End Cart Area =================-->
+
+    <!--================ Start footer Area  =================-->
+    
+    <!--================ End footer Area  =================-->
+
+    <script src="{% static 'vendors2/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors2/bootstrap/bootstrap.bundle.min.js' %}"></script>
+   
+    <script src="{% static 'vendors2/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors2/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors2/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors2/mail-script.js' %}"></script>
+    <script src="{% static 'js2/main.js' %}"></script>
+    <script>
+      
+       
+
+     
+
+       setTimeout(()=>{
+        $("#wave").addClass("d-none")
+       },
+      1000)
+        
+      
+    </script>
+  </body>
+</html>
