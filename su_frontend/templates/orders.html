@@ -103,6 +103,7 @@
       <div class="loading-bar"></div>
     </div>
     <section class="cart_area mt-4 p-0">
+      {% if order.count > 0 %}
       <div class="container">
         <div class="cart_inner row">
             {% for item in order %}
@@ -122,6 +123,9 @@
            {% endfor %}
         </div>
       </div>
+      {% else %}
+      <h1 class="text-center text-warning">No order found</h1>
+      {% endif %}
     </section>
     <!--================End Cart Area =================-->
 
